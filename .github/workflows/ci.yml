@@ -39,7 +39,11 @@ jobs:
           global-json-file: global.json
       - name: Restore
         run: dotnet restore CloudWorks.sln --locked-mode
-      - name: Check formatting
+      - name: Restore tools
+        run: dotnet tool restore
+      - name: Check code style
+        run: dotnet csharpier check .
+      - name: Check analyzers and naming
         run: dotnet format CloudWorks.sln --verify-no-changes --no-restore
       - name: Build
         run: dotnet build CloudWorks.sln --configuration Release --no-restore

@@ -1,10 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
     <ProjectReference Include="..\CloudWorks.Domain\CloudWorks.Domain.csproj" />
   </ItemGroup>
-
-  <PropertyGroup>
-  </PropertyGroup>
-
 </Project>
