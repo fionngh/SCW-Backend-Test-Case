@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -14,4 +14,3 @@
   </PropertyGroup>
 
 </Project>
-
