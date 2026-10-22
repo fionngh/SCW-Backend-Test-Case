@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -19,5 +18,4 @@
     <ProjectReference Include="..\..\src\CloudWorks.Api\CloudWorks.Api.csproj" />
     <ProjectReference Include="..\..\src\CloudWorks.Infrastructure\CloudWorks.Infrastructure.csproj" />
   </ItemGroup>
-
 </Project>
