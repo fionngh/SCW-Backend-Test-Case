@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      CLOUDWORKS_TEST_POSTGRES: Host=localhost;Port=5432;Username=postgres;Password=postgres
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Restore
+        run: dotnet restore CloudWorks.sln --locked-mode
+      - name: Check formatting
+        run: dotnet format CloudWorks.sln --verify-no-changes --no-restore
+      - name: Build
+        run: dotnet build CloudWorks.sln --configuration Release --no-restore
+      - name: Check for vulnerable packages
+        run: |
+          dotnet list CloudWorks.sln package --vulnerable --include-transitive 2>&1 | tee vulnerabilities.txt
+          ! grep -q "has the following vulnerable packages" vulnerabilities.txt
+      - name: Unit tests
+        run: dotnet test tests/CloudWorks.UnitTests --configuration Release --no-build --collect:"XPlat Code Coverage" --results-directory TestResults
+      - name: Integration tests
+        run: dotnet test tests/CloudWorks.IntegrationTests --configuration Release --no-build --results-directory TestResults
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: TestResults
