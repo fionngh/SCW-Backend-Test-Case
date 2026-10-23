@@ -391,3 +391,6 @@ dotnet_naming_style.s_camelcase.capitalization = camel_case
 
 [*.cs]
 dotnet_diagnostic.IDE1006.severity = error
+
+[**/Database/Migrations/*.cs]
+generated_code = true
