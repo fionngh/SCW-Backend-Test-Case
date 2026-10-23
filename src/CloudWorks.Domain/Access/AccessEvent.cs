@@ -10,18 +10,20 @@ public sealed class AccessEvent
     private AccessEvent(
         Guid id,
         DateTimeOffset occurredAt,
-        Door door,
-        User? user,
+        Guid doorId,
+        string doorName,
+        Guid? userId,
+        string? userDisplayName,
         AccessOutcome outcome,
         AccessFailureReason? reason
     )
     {
         Id = id;
         OccurredAt = occurredAt;
-        DoorId = door.Id;
-        DoorName = door.Name;
-        UserId = user?.Id;
-        UserDisplayName = user?.DisplayName;
+        DoorId = doorId;
+        DoorName = doorName;
+        UserId = userId;
+        UserDisplayName = userDisplayName;
         Outcome = outcome;
         Reason = reason;
     }
@@ -70,8 +72,10 @@ public sealed class AccessEvent
         return new(
             Guid.CreateVersion7(),
             Guard.RequireUtc(occurredAt, "Event time"),
-            door,
-            user,
+            door.Id,
+            door.Name,
+            user?.Id,
+            user?.DisplayName,
             outcome,
             reason
         );

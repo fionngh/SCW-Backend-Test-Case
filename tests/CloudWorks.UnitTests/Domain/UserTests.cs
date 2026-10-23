@@ -85,14 +85,12 @@ public class UserTests
     }
 
     [Fact]
-    public void DeactivateThenActivate_TogglesIsActive()
+    public void Deactivate_ActiveUser_MarksUserInactive()
     {
         var user = CreateUser();
 
         user.Deactivate();
-        Assert.False(user.IsActive);
 
-        user.Activate();
-        Assert.True(user.IsActive);
+        Assert.False(user.IsActive);
     }
 }

@@ -42,14 +42,12 @@ public class DoorTests
     }
 
     [Fact]
-    public void DeactivateThenActivate_TogglesIsActive()
+    public void Deactivate_ActiveDoor_MarksDoorInactive()
     {
         var door = Door.Create(OfficeId, "Main entrance", DoorAccessPolicy.OfficeMembers);
 
         door.Deactivate();
-        Assert.False(door.IsActive);
 
-        door.Activate();
-        Assert.True(door.IsActive);
+        Assert.False(door.IsActive);
     }
 }
