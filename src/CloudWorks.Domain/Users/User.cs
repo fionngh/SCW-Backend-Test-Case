@@ -57,12 +57,7 @@ public sealed class User
 
     public void ChangeOffice(Guid officeId) => OfficeId = Guard.RequireId(officeId, "Office");
 
-    public void ChangePasswordHash(string? passwordHash) =>
-        PasswordHash = RequirePasswordHash(passwordHash);
-
     public void Deactivate() => IsActive = false;
-
-    public void Activate() => IsActive = true;
 
     private static string NormalizeUsername(string? username) =>
         Guard.RequireText<User>(username, nameof(Username)).ToLowerInvariant();

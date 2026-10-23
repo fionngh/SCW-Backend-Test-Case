@@ -41,6 +41,4 @@ public sealed class Door
         AccessPolicy = Guard.RequireDefined(accessPolicy, "Door access policy");
 
     public void Deactivate() => IsActive = false;
-
-    public void Activate() => IsActive = true;
 }
