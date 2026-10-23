@@ -2,4 +2,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CloudWorks.Application\CloudWorks.Application.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+  </ItemGroup>
 </Project>
