@@ -1,4 +1,4 @@
-using Domain.Common;
+using Common.Exceptions;
 using Domain.Permissions;
 using Domain.Permissions.Enums;
 

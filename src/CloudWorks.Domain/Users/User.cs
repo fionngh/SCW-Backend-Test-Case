@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using Domain.Common;
+using Common.Exceptions;
+using Common.Guards;
 
 namespace Domain.Users;
 

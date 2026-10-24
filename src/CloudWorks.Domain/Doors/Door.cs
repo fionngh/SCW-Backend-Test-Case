@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using Domain.Common;
+using Common.Guards;
 using Domain.Doors.Enums;
 
 namespace Domain.Doors;

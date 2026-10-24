@@ -1,3 +1,3 @@
-namespace Domain.Common;
+namespace Common.Exceptions;
 
 public sealed class DomainRuleException(string message) : Exception(message);
