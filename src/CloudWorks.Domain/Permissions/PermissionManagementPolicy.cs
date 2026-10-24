@@ -16,10 +16,17 @@ public static class PermissionManagementPolicy
 
         return actor.IsActive
             && actor.Id != targetUserId
-            && actorPermissions.Any(permission =>
-                permission.IsActive
-                && permission.UserId == actor.Id
-                && permission.Type == PermissionType.Administer
-            );
+            && IsAdministrator(actor.Id, actorPermissions);
+    }
+
+    public static bool IsAdministrator(Guid userId, IEnumerable<Permission> permissions)
+    {
+        ArgumentNullException.ThrowIfNull(permissions);
+
+        return permissions.Any(permission =>
+            permission.IsActive
+            && permission.UserId == userId
+            && permission.Type == PermissionType.Administer
+        );
     }
 }
