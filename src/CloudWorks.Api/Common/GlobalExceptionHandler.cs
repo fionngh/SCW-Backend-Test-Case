@@ -18,6 +18,10 @@ internal sealed class GlobalExceptionHandler(
         var (statusCode, title) = exception switch
         {
             DomainRuleException => (StatusCodes.Status400BadRequest, "Validation failed"),
+            AuthenticationFailedException => (
+                StatusCodes.Status401Unauthorized,
+                "Authentication failed"
+            ),
             NotFoundException => (StatusCodes.Status404NotFound, "Not found"),
             ConflictException => (StatusCodes.Status409Conflict, "Conflict"),
             ForbiddenException => (StatusCodes.Status403Forbidden, "Forbidden"),
