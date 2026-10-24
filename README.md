@@ -8,6 +8,7 @@ Stack: ASP.NET Core 10 (C#), EF Core, PostgreSQL.
 
 | Path | Purpose |
 |---|---|
+| `src/CloudWorks.Common` | Types shared by every layer, such as the exceptions that map to HTTP errors. |
 | `src/CloudWorks.Domain` | Entities, invariants and domain rules. No framework dependencies. |
 | `src/CloudWorks.Application` | Use cases and the interfaces (ports) they depend on. |
 | `src/CloudWorks.Infrastructure` | EF Core persistence, migrations, hardware adapters. |
@@ -15,7 +16,7 @@ Stack: ASP.NET Core 10 (C#), EF Core, PostgreSQL.
 | `tests/CloudWorks.UnitTests` | Domain and application tests. No I/O. |
 | `tests/CloudWorks.IntegrationTests` | API tests against a real PostgreSQL database. |
 
-Dependencies point inward: `Api -> Infrastructure -> Application -> Domain`.
+Dependencies point inward: `Api -> Infrastructure -> Application -> Domain -> Common`.
 
 ## Prerequisites
 

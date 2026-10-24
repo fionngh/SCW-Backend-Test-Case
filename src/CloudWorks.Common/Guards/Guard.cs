@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
+using Common.Exceptions;
 
-namespace Domain.Common;
+namespace Common.Guards;
 
-internal static class Guard
+public static class Guard
 {
     public static string RequireText<TEntity>(string? value, string propertyName)
     {

@@ -132,8 +132,14 @@
           "CloudWorks.Domain": "[1.0.0, )"
         }
       },
-      "cloudworks.domain": {
+      "cloudworks.common": {
         "type": "Project"
+      },
+      "cloudworks.domain": {
+        "type": "Project",
+        "dependencies": {
+          "CloudWorks.Common": "[1.0.0, )"
+        }
       }
     }
   }

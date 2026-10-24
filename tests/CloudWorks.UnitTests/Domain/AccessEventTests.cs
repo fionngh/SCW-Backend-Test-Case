@@ -1,6 +1,6 @@
+using Common.Exceptions;
 using Domain.Access;
 using Domain.Access.Enums;
-using Domain.Common;
 
 namespace UnitTests.Domain;
 
