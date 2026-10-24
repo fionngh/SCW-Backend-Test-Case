@@ -2,6 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY global.json Directory.Build.props Directory.Packages.props CloudWorks.sln ./
+COPY src/CloudWorks.Common/*.csproj src/CloudWorks.Common/
 COPY src/CloudWorks.Domain/*.csproj src/CloudWorks.Domain/
 COPY src/CloudWorks.Application/*.csproj src/CloudWorks.Application/
 COPY src/CloudWorks.Infrastructure/*.csproj src/CloudWorks.Infrastructure/
