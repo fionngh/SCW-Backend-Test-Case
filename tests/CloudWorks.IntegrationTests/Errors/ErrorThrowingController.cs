@@ -1,9 +1,11 @@
 using Common.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IntegrationTests.Errors;
 
 [ApiController]
+[AllowAnonymous]
 [Route("test-errors")]
 public sealed class ErrorThrowingController : ControllerBase
 {
