@@ -32,17 +32,14 @@ public sealed class PostgresDatabaseFixture : IAsyncLifetime
         await ExecuteOnServerAsync($"DROP DATABASE {_databaseName} WITH (FORCE)");
     }
 
+    public string ConnectionString =>
+        new NpgsqlConnectionStringBuilder(_serverConnection.ConnectionString)
+        {
+            Database = _databaseName,
+        }.ConnectionString;
+
     public CloudWorksDbContext CreateContext() =>
-        new(
-            new DbContextOptionsBuilder<CloudWorksDbContext>()
-                .UseNpgsql(
-                    new NpgsqlConnectionStringBuilder(_serverConnection.ConnectionString)
-                    {
-                        Database = _databaseName,
-                    }.ConnectionString
-                )
-                .Options
-        );
+        new(new DbContextOptionsBuilder<CloudWorksDbContext>().UseNpgsql(ConnectionString).Options);
 
     private async Task ExecuteOnServerAsync(string commandText)
     {

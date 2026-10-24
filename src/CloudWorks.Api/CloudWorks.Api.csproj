@@ -1,7 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-  <PropertyGroup></PropertyGroup>
+  <PropertyGroup>
+    <UserSecretsId>cd4ab1b6-de34-42d1-9ff0-0b1cd8071b38</UserSecretsId>
+  </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
